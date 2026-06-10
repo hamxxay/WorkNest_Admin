@@ -4,17 +4,18 @@ const path = require('path');
 const envPath = path.join(__dirname, '.env');
 const outPath = path.join(__dirname, 'src', 'environments', 'environment.ts');
 
-const env = {};
+// Load .env file if it exists (local dev)
 if (fs.existsSync(envPath)) {
   fs.readFileSync(envPath, 'utf8').split('\n').forEach(line => {
     line = line.trim();
     if (!line || line.startsWith('#')) return;
     const [key, ...rest] = line.split('=');
-    env[key.trim()] = rest.join('=').trim();
+    const k = key.trim();
+    if (!process.env[k]) process.env[k] = rest.join('=').trim();
   });
 }
 
-const get = (key, fallback = '') => env[key] || fallback;
+const get = (key, fallback = '') => process.env[key] || fallback;
 
 const content = `export const environment = {
   production: false,
@@ -31,4 +32,4 @@ const content = `export const environment = {
 `;
 
 fs.writeFileSync(outPath, content);
-console.log('environment.ts generated from .env');
+console.log('environment.ts generated');
