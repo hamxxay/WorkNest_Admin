@@ -120,11 +120,13 @@ export class Manage implements OnInit {
   openCreate() {
     this.editItem = null; this.formData = {}; this.error = ''; this.showModal = true;
     if (this.entity === 'bookings') this.initBookingCalendar();
+    if (this.entity === 'gallery') this.formData.isActive = true;
   }
 
   openEdit(item: any) {
     this.editItem = item; this.formData = { ...item }; this.error = ''; this.showModal = true;
     if (this.entity === 'bookings') this.initBookingCalendar();
+    if (this.entity === 'gallery' && this.formData.isActive === undefined) this.formData.isActive = true;
   }
 
   closeModal() { this.showModal = false; }
@@ -455,8 +457,9 @@ export class Manage implements OnInit {
         columns: [
           { key: 'title', label: 'Title' },
           { key: 'imageUrl', label: 'Image', type: 'image' },
-          { key: 'sortOrder', label: 'Order' },
-          { key: 'isActive', label: 'Active', type: 'boolean' },
+          // { key: 'sortOrder', label: 'Order' },
+          // { key: 'isActive', label: 'Active', type: 'boolean' },
+
         ],
         fields: [
           { key: 'title', label: 'Title', type: 'text' },
