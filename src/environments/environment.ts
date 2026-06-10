@@ -1,12 +1,12 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8000/api',
+  apiUrl: process.env['NG_APP_API_URL'] || 'http://localhost:8000/api',
   firebase: {
-    apiKey: 'AIzaSyCkExUnLV-oGvRp56PVnTJMPWPplLFIuXs',
-    authDomain: 'work-nest-3936a.firebaseapp.com',
-    projectId: 'work-nest-3936a',
-    storageBucket: 'work-nest-3936a.firebasestorage.app',
-    messagingSenderId: '722479405081',
-    appId: '1:722479405081:web:48935f617c573c030e7288',
+    apiKey:            process.env['NG_APP_FIREBASE_API_KEY']            || '',
+    authDomain:        process.env['NG_APP_FIREBASE_AUTH_DOMAIN']        || '',
+    projectId:         process.env['NG_APP_FIREBASE_PROJECT_ID']         || '',
+    storageBucket:     process.env['NG_APP_FIREBASE_STORAGE_BUCKET']     || '',
+    messagingSenderId: process.env['NG_APP_FIREBASE_MESSAGING_SENDER_ID']|| '',
+    appId:             process.env['NG_APP_FIREBASE_APP_ID']             || '',
   },
 };
