@@ -86,7 +86,7 @@ export class AdminService {
   getPaymentSummary(id: number): Observable<ApiResponse<any>> { return this.http.get<ApiResponse<any>>(`${this.api}/payment/${id}/summary`); }
 
   getContacts(page?: number, limit?: number, search?: string): Observable<ApiResponse<Contact[]>> {
-    return this.http.get<ApiResponse<Contact[]>>(`${this.api}/contact`);
+    return this.http.get<ApiResponse<Contact[]>>(`${this.api}/contact${this.qs({ page, limit, search })}`);
   }
   updateContactStatus(id: number, status: string): Observable<ApiResponse<any>> { return this.http.patch<ApiResponse<any>>(`${this.api}/contact/${id}/status?status=${encodeURIComponent(status)}`, {}); }
   deleteContact(id: number): Observable<ApiResponse<any>> { return this.http.delete<ApiResponse<any>>(`${this.api}/contact/${id}`); }
