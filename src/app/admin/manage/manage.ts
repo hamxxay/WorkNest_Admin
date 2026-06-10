@@ -42,6 +42,15 @@ export class Manage implements OnInit {
   canNext = computed(() => this.page() < this.totalPages());
 
   searchQuery = '';
+  private searchTimer: any;
+
+  onSearch() {
+    clearTimeout(this.searchTimer);
+    this.searchTimer = setTimeout(() => {
+      this.page.set(1);
+      this.load();
+    }, 400);
+  }
 
   get filtered() { return this.items(); }
 
